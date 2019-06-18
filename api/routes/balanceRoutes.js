@@ -12,14 +12,16 @@ const User = require("../models/userModel");
 
 router.get("/:userId", (req, res, next) => {
     const id = req.params.userId;
+
     User.findById(id)
       .exec()
       .then(doc => {
-        console.log("From database", doc);
+        console.log("Get balance process", doc);
         if (doc) {
           res.status(200).json({
               balance: doc.balance
             });
+          checkBalance(req.params.balance)
         } else {
           res
             .status(404)
@@ -33,31 +35,3 @@ router.get("/:userId", (req, res, next) => {
   });
 
 module.exports = router;
-
-
-
-
-
- / old version */
- // router.get("/:_id", (req, res, next) => {
-//     // var _id = req.params._id;
-//     // console.log("uid is " + _id);
-
-//     // if (_id == null || _id == '') {
-//     //     res.json({
-//     //         status: 'error',
-//     //         message: '_id is required',
-//     //     });
-//     //     return null;
-//     // }
-//     var uid = req.params._id
-//     console.log(uid + ' first');
-
-//     User.find({_id: req.params._id}, function(err, doc) {
-//         console.log(uid + ' second');
-//         res.json({
-//             balance: doc
-//         });
-//     });
-
-// });

@@ -1,7 +1,6 @@
 /**
  *  POST : for save new account to mongoDB 
  * 
- *  This version still use 'name'
  *  Created by CPU on 13/6/19
  */
 
@@ -14,11 +13,11 @@ const Account = require("../models/accountModel")
 
 
 router.post("/", (req, res, next) => {
-  var name = req.body.name;
+  var line_id = req.body.line_id;
   var phone_number = req.body.phone_number;
 
   //check input 
-  if (name == null || phone_number == null || name == "" || phone_number == "") {
+  if (line_id == null || phone_number == null || line_id == "" || phone_number == "") {
     res.json({
       status: 'error',
       message: 'please enter phone number and name'
@@ -29,20 +28,20 @@ router.post("/", (req, res, next) => {
   // for accountModel
   var account = new Account({
     _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
+    line_id: req.body.line_id,
     phone_number: req.body.phone_number,
   });
 
   // for userModel
   var userData = new User({
     _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
+    line_id: req.body.line_id,
     phone_number: req.body.phone_number,
     balance: 1000, //initialize money (for testing)
   });
 
 
-  //check exist account
+  //check if account is exists
   Account.find({ phone_number: req.body.phone_number }, function (err, docs) {
     
     if (docs == "") {

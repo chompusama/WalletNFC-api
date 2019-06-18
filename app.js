@@ -4,10 +4,12 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
+// define path of each routes
 const productRoutes = require("./api/routes/products");
 const orderRoutes = require("./api/routes/orders");
 const registerRoutes = require("./api/routes/registerRoutes");
-const transferRoutes = require("./api/routes/transferRoutes");
+const payRoutes = require("./api/routes/payRoutes");
+const incomeRoutes = require("./api/routes/incomeRoutes");
 const balanceRoutes = require("./api/routes/balanceRoutes");
 
 // connect to mongoDB
@@ -41,7 +43,8 @@ app.use((req, res, next) => {
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/register", registerRoutes);
-app.use("/transfer", transferRoutes);
+app.use("/transfer/pay", payRoutes);
+app.use("/transfer/income", incomeRoutes);
 app.use("/balance", balanceRoutes);
 
 

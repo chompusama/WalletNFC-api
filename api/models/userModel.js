@@ -2,18 +2,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userHistorySchema = new Schema({
-    source_transfer: {
+    type_transfer:{
         type: String
     },
-    destination_transfer: {
+    customer_transfer: {
+        type: String
+    },
+    business_transfer: {
         type: String
     },
     date_time: {
-        type: Number
+        type: String
     },
     amount_transfer: {
         type: Number
-    }
+    },
 });
 
 var userSchema = new Schema({

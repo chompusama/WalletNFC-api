@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const accountSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    name: String,
+    line_id: String,
     phone_number: String,
     balance: Number,
 });
