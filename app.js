@@ -11,6 +11,7 @@ const registerRoutes = require("./api/routes/registerRoutes");
 const payRoutes = require("./api/routes/payRoutes");
 const incomeRoutes = require("./api/routes/incomeRoutes");
 const balanceRoutes = require("./api/routes/balanceRoutes");
+const historyRoutes = require("./api/routes/historyRoutes");
 
 // connect to mongoDB
 // username is chompusama and password is digio
@@ -46,6 +47,7 @@ app.use("/register", registerRoutes);
 app.use("/transfer/pay", payRoutes);
 app.use("/transfer/income", incomeRoutes);
 app.use("/balance", balanceRoutes);
+app.use("/history", historyRoutes);
 
 
 app.use((req, res, next) => {
