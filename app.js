@@ -6,7 +6,6 @@ const mongoose = require("mongoose");
 
 // define path of each routes
 const productRoutes = require("./api/routes/products");
-const orderRoutes = require("./api/routes/orders");
 const registerRoutes = require("./api/routes/registerRoutes");
 const payRoutes = require("./api/routes/payRoutes");
 const incomeRoutes = require("./api/routes/incomeRoutes");
@@ -42,13 +41,11 @@ app.use((req, res, next) => {
 
 // Routes which should handle requests
 app.use("/products", productRoutes);
-app.use("/orders", orderRoutes);
 app.use("/register", registerRoutes);
 app.use("/transfer/pay", payRoutes);
 app.use("/transfer/income", incomeRoutes);
 app.use("/balance", balanceRoutes);
 app.use("/history", historyRoutes);
-
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
@@ -64,5 +61,8 @@ app.use((error, req, res, next) => {
     }
   });
 });
+
+
+
 
 module.exports = app;

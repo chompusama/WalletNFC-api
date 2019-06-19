@@ -17,7 +17,7 @@ router.post("/", (req, res, next) => {
   var phone_number = req.body.phone_number;
 
   //check input 
-  if (line_id == null || phone_number == null || line_id == "" || phone_number == "") {
+  if (phone_number == null || phone_number == "") {
     res.json({
       status: 'error',
       message: 'please enter phone number and name'
