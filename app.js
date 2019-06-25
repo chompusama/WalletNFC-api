@@ -5,12 +5,12 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 // define path of each routes
-const productRoutes = require("./api/routes/products");
 const registerRoutes = require("./api/routes/registerRoutes");
 const payRoutes = require("./api/routes/payRoutes");
 const incomeRoutes = require("./api/routes/incomeRoutes");
 const balanceRoutes = require("./api/routes/balanceRoutes");
 const historyRoutes = require("./api/routes/historyRoutes");
+const verifyRoutes = require("./api/routes/verifyRoutes");
 
 // connect to mongoDB
 // username is chompusama and password is digio
@@ -40,12 +40,12 @@ app.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-app.use("/products", productRoutes);
 app.use("/register", registerRoutes);
 app.use("/transfer/pay", payRoutes);
 app.use("/transfer/income", incomeRoutes);
 app.use("/balance", balanceRoutes);
 app.use("/history", historyRoutes);
+app.use("/verify", verifyRoutes)
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
