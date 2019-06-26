@@ -11,6 +11,7 @@ const incomeRoutes = require("./api/routes/incomeRoutes");
 const balanceRoutes = require("./api/routes/balanceRoutes");
 const historyRoutes = require("./api/routes/historyRoutes");
 const verifyRoutes = require("./api/routes/verifyRoutes");
+// const uploadRoutes = require("./api/routes/uploadRoutes");
 
 // connect to mongoDB
 // username is chompusama and password is digio
@@ -39,13 +40,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// makes 'uploads' folder to public
+app.use(express.static('uploads'))
+
 // Routes which should handle requests
 app.use("/register", registerRoutes);
 app.use("/transfer/pay", payRoutes);
 app.use("/transfer/income", incomeRoutes);
 app.use("/balance", balanceRoutes);
 app.use("/history", historyRoutes);
-app.use("/verify", verifyRoutes)
+app.use("/verify", verifyRoutes);
+// app.use("/upload", uploadRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found");
@@ -61,8 +66,6 @@ app.use((error, req, res, next) => {
     }
   });
 });
-
-
 
 
 module.exports = app;

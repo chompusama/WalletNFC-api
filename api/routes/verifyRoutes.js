@@ -1,5 +1,5 @@
 /**
- *  GET : check if account is exists by line id
+ *  GET : check if line account is exists
  * 
  *  Created by CPU on 24/6/19
  */
@@ -21,7 +21,7 @@ router.get("/:lineId", (req, res, next) => {
             res.status(200).send('true');
         }
         else {
-            res.status(200).send('false');
+            res.status(200).send('false');          // that account is exists return false string
         }
 
     });

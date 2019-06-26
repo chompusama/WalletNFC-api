@@ -19,6 +19,15 @@ var userHistorySchema = new Schema({
     },
 });
 
+var userUrlSchema = new Schema({
+    income_qrcode_url:{
+        type: String
+    },
+    pay_qrcode_url: {
+        type: String
+    },
+});
+
 var userSchema = new Schema({
     _id: {
         type: String
@@ -36,9 +45,16 @@ var userSchema = new Schema({
         type: Number
     },
     line_id: {
-        type: String,
+        type: String
     },
+    // income_qrcode_url: {
+    //     type: String
+    // },
+    // pay_qrcode_url: {
+    //     type: String
+    // },
     history: [userHistorySchema],
+    url: [userUrlSchema],
 });
 
 module.exports = mongoose.model('User', userSchema);

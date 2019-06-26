@@ -1,6 +1,6 @@
 /**
  *  POST : for transfer money to another account by phone number
- *       : inc merchant's money
+ *       : increase merchant's money
  *       : decrease customer's money
  *       : push data to database
  *  
