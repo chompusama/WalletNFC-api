@@ -19,14 +19,14 @@ var userHistorySchema = new Schema({
     },
 });
 
-var userUrlSchema = new Schema({
-    income_qrcode_url:{
-        type: String
-    },
-    pay_qrcode_url: {
-        type: String
-    },
-});
+// var userUrlSchema = new Schema({
+//     income_qrcode_url:{
+//         type: String
+//     },
+//     pay_qrcode_url: {
+//         type: String
+//     },
+// });
 
 var userSchema = new Schema({
     _id: {
@@ -47,14 +47,14 @@ var userSchema = new Schema({
     line_id: {
         type: String
     },
-    // income_qrcode_url: {
-    //     type: String
-    // },
-    // pay_qrcode_url: {
-    //     type: String
-    // },
+    income_qrcode_url: {
+        type: String
+    },
+    pay_qrcode_url: {
+        type: String
+    },
     history: [userHistorySchema],
-    url: [userUrlSchema],
+    // url: [userUrlSchema],
 });
 
 module.exports = mongoose.model('User', userSchema);

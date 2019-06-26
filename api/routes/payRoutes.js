@@ -3,6 +3,8 @@
  *       : increase merchant's money
  *       : decrease customer's money
  *       : push data to database
+ * 
+ *  GET : for get qrcode image url current user
  *  
  *  Created by CPU on 17/6/19
  */
@@ -55,6 +57,31 @@ router.post("/:businessId", (req, res, next) => {      // ID of person who is sc
 
   res.status(200).json({ success: true });
 
+});
+
+router.get("/:lineId", (req, res, next) => {
+  const lineId = req.params.lineId;
+
+  User.findOne({ line_id: lineId }, function (err, docs) {
+    console.log(docs);
+    if (docs == null || docs == "") {
+      res.json({
+        status: 'error',
+        message: 'line id is invalid',
+      });
+      return null;
+    }
+    else {
+      // var url = {
+      //   status: 'ok',
+      //   pay_qrcode_url: docs.pay_qrcode_url
+      // }
+      
+      // res.json(url);
+      var urlString = docs.pay_qrcode_url
+      res.send(urlString)
+    }
+  });
 });
 
 module.exports = router;

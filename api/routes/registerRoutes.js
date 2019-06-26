@@ -21,8 +21,8 @@ var server = 'https://069e508f.ngrok.io';
 router.post("/", (req, res, next) => {
   var line_id = req.body.line_id;
   var phone_number = req.body.phone_number;
-  var income_url = server + '/' + phone_number + '-income.png';
-  var pay_url = server + '/' + phone_number + '-pay.png';;
+  var income_url = /*server +*/ '/' + phone_number + '-income.jpg';
+  var pay_url = /*server + */'/' + phone_number + '-pay.jpg';
 
   //check input 
   if (phone_number == null || phone_number == "") {
@@ -46,10 +46,9 @@ router.post("/", (req, res, next) => {
     line_id: req.body.line_id,
     phone_number: req.body.phone_number,
     balance: 1000, //initialize money (for testing)
-    url: {
-      income_qrcode_url: income_url,
-      pay_qrcode_url: pay_url
-    }
+    income_qrcode_url: income_url,
+    pay_qrcode_url: pay_url
+
   });
 
 
@@ -62,7 +61,7 @@ router.post("/", (req, res, next) => {
       //generate QRcode
       //example path 'src/img/qrcode/0619499548-income'
       //example text for gen to qrCode is digio-0619499548-income
-      QRCode.toFile(qrPath + '/' + req.body.phone_number + '-income.png', 'digio-' + req.body.phone_number + '-income', {
+      QRCode.toFile(qrPath + '/' + req.body.phone_number + '-income.jpg', 'digio-' + req.body.phone_number + '-income', {
         color: {
           dark: '#1A1A1A',
           light: '#FFFFFF'    // #0000 is transparent background
@@ -72,7 +71,7 @@ router.post("/", (req, res, next) => {
         console.log('generate income qrcode is done!')
       })
 
-      QRCode.toFile(qrPath + '/' + req.body.phone_number + '-pay.png', 'digio-' + req.body.phone_number + '-pay', {
+      QRCode.toFile(qrPath + '/' + req.body.phone_number + '-pay.jpg', 'digio-' + req.body.phone_number + '-pay', {
         color: {
           dark: '#1A1A1A',
           light: '#FFFFFF'
