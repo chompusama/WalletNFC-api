@@ -10,27 +10,22 @@ const mongoose = require("mongoose");
 
 const User = require("../models/userModel");
 
-router.get("/:userId", (req, res, next) => {
-    const id = req.params.userId;
+router.get("/:lineId", (req, res, next) => {
+  const lineId = req.params.lineId;
 
-    User.findById(id)
-      .exec()
-      .then(doc => {
-        console.log("Get history process", doc);
-        if (doc) {
-          res.status(200).json({
-              history: doc.history
-            });
-        } else {
-          res
-            .status(404)
-            .json({ message: "No valid entry found for provided ID" });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({ error: err });
+  User.findOne({ line_id: lineId }, function (err, docs) {
+    console.log(docs);
+    if (docs == null || docs == "") {
+      res.json({
+        status: 'error',
+        message: 'line id is invalid',
       });
+      return null;
+    }
+    else {
+      res.json(docs.history)
+    }
   });
+});
 
 module.exports = router;
